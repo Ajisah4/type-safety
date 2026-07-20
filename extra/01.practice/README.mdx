@@ -20,19 +20,29 @@ This exercise covers:
 
 💰 Start with the type definitions - they'll help TypeScript guide you as you implement the functions.
 
-💰 Use the test code at the bottom to verify your implementations work correctly.
+💰 Uncomment the "Test Section" snippets at the bottom of each section to smoke-check your work in the console.
 
-## Structure
+## What success looks like
 
-The file is organized into sections. Work through them in order:
+There are no automated tests. You're done with a section when:
 
-1. **Type Aliases & Interfaces** - Build the foundation
-2. **Union & Intersection Types** - Combine types safely
-3. **Literal Types** - Create single sources of truth
-4. **Generics & Constraints** - Write reusable code
-5. **Discriminated Unions** - Model complex state
-6. **Any vs Unknown** - Handle unknown data safely
-7. **Complex Combinations** - Apply everything together
+1. **Type Aliases & Interfaces** — A `Customer` value type-checks with required
+   `BaseEntity` fields, nested `Address`, and `isActive`
+2. **Union & Intersection Types** — `processPayment` narrows on `type` and
+   returns a distinct descriptive string for card, PayPal, and bank payments
+3. **Literal Types** — `orderStatuses` uses `as const`; `getStatusLabel('pending')`
+   returns `'pending'` (and likewise for other keys) using the object as the
+   source of truth
+4. **Generics & Constraints** — `getProperty`, `hasProperty`, `mergeObjects`, and
+   `filterByProperty` type-check at the call sites in the section comments and
+   produce the expected runtime values
+5. **Discriminated Unions** — `handleApiResponse` covers loading/success/error
+   with exhaustive checking; `getFieldValue` returns the field's value for each
+   `FormField` variant
+6. **Any vs Unknown** — `safeParseJson` returns an object or `null`;
+   `isStringArray` is a type guard that returns `true` only for string arrays
+7. **Complex Combinations** — A `Task` value type-checks; `updateTaskMetadata`
+   returns a new task with updated `metadata`
 
 ## Tips
 

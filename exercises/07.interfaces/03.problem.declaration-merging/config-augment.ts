@@ -1,9 +1,11 @@
 // 🐨 Use declare global to augment the Config interface from index.ts
-// 💰 Use: declare global { interface Config { ... } }
-// 💰 This tells TypeScript to merge this Config interface with the global one
+// 💰 declare global { interface Config { ... } }
 
 // 🐨 Add a `theme` property to Config:
 // - theme: 'light' | 'dark'
 
 // 🐨 Add a `maxConnections` property to Config:
 // - maxConnections: number
+
+// 🐨 Make this file a module so `import './config-augment.ts'` is valid
+// 💰 A file is a module when it has at least one top-level import or export

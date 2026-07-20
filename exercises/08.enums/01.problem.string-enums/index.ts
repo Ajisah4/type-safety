@@ -7,15 +7,15 @@
 // - Shipped = 'shipped'
 // - Delivered = 'delivered'
 
-// 🐨 Create an order object with:
-// - id: string
+// 🐨 Create an `order` object with:
+// - id: string (non-empty)
 // - status: OrderStatus
-// - customerName: string
+// - customerName: string (non-empty)
 
 // console.log(order)
 
-// 🐨 Create a function `getStatusMessage` that takes an OrderStatus
-// and returns a user-friendly message
+// 🐨 Create a function `getStatusMessage(status: OrderStatus): string`
+// Return a distinct non-empty message for each status (exact text is up to you)
 
 // console.log(getStatusMessage(order.status))
 

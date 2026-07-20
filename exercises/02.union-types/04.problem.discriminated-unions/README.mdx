@@ -18,8 +18,28 @@ create valid combinations.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create discriminated unions for API responses
-2. Create discriminated unions for payment methods
-3. Handle all cases with exhaustiveness checking
+1. Replace the placeholder `ApiState` with a discriminated union on `status`.
+   Valid variants (each exclusive — a loading state must not require success or
+   error fields, and so on):
+   - loading — only the loading discriminant
+   - success — string-array `data`
+   - error — string `error`
+2. Replace the placeholder `PaymentMethod` with a discriminated union on `type`.
+   Valid variants (each exclusive):
+   - credit card — `last4` and `expiry` strings
+   - PayPal — `email` string
+   - bank — `accountNumber` string
+3. Remove the `@ts-expect-error` comments once the unions are correct so the
+   `never` exhaustiveness checks type-check
+4. Export `renderState` and `describePayment` by name (their bodies are already
+   written)
+
+## Completion criteria
+
+- Named exports: `renderState`, `describePayment`
+- `renderState` / `describePayment` keep working for each variant using the
+  return strings already in the starter switch cases
+- Invalid mixed shapes (for example success fields on a loading state) are not
+  representable
 
 📜 [TypeScript Handbook - Discriminated Unions](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)

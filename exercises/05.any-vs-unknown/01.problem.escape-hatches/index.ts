@@ -8,8 +8,12 @@ function dangerousProcess(value: any): string {
 
 dangerousProcess('example')
 
-// 🐨 Rewrite this function using `unknown` instead of `any`.
-// Handle string, number, and at least one other type safely.
+// 🐨 Implement `safeProcess` for unknown input
+// Required outputs:
+// - string → uppercased
+// - number → two decimal places
+// - boolean → true / false
+// - other values → string conversion without throwing
 
 // 🐨 Export `safeProcess`. Tests import it by name and check runtime behavior.
 // export { safeProcess }

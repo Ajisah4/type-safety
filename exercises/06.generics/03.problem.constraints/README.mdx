@@ -26,9 +26,20 @@ Use `extends` to add constraints.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a constrained function that requires objects with an `id` property
-2. Use `keyof` constraint for type-safe property access (we'll cover type operators in depth in the Advanced TypeScript workshop)
-3. Create a function with multiple constrained type parameters
+1. Implement `getId` — accepts objects that have `id: string` and returns that
+   `id`
+2. Implement `getProperty` — takes an object and a key of that object, returns
+   the value at that key with the correct type
+3. Implement `merge` — takes two objects and returns one object with properties
+   from both; when keys overlap, the second argument wins
+4. Export `getId`, `getProperty`, and `merge` by name
+
+## Completion criteria
+
+- Named exports: `getId`, `getProperty`, `merge`
+- `getId({ id: '1', name: 'Alice' })` → `'1'`
+- `getProperty(user, 'email')` returns the email string
+- `merge({ a: 1, b: 2 }, { b: 3, c: 4 })` → `{ a: 1, b: 3, c: 4 }`
 
 <callout-info>
 	This is a small preview of **type operators**. We'll dive deeper into these in

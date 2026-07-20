@@ -27,16 +27,16 @@ await test('getRoutePath returns the expected path', () => {
 	assert.strictEqual(
 		solution.getRoutePath('home'),
 		'/',
-		'🚨 getRoutePath should return the "/" path for home',
+		'🚨 getRoutePath should return the path stored on routes for home',
 	)
 	assert.strictEqual(
 		solution.getRoutePath('login'),
 		'/login',
-		'🚨 getRoutePath should return "/login" for login',
+		'🚨 getRoutePath should return the path stored on routes for login',
 	)
 	assert.strictEqual(
 		solution.getRoutePath('settings'),
 		'/settings',
-		'🚨 getRoutePath should return "/settings" for settings',
+		'🚨 getRoutePath should return the path stored on routes for settings',
 	)
 })

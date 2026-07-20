@@ -35,7 +35,7 @@ await test('greet function should work correctly', () => {
 	assert.strictEqual(
 		solution.greet(alice),
 		'Hello, Alice!',
-		'🚨 greet function should return "Hello, Alice!" - check your function implementation',
+		"🚨 greet should return a greeting that uses the user's name (Hello, <name>!)",
 	)
 })
 

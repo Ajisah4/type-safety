@@ -3,21 +3,22 @@
 // 🐨 Create a function `getId` that:
 // - Takes any object type with an `id: string` property
 // - Returns the id
-// 💰 Limit ItemWithId to objects with an id property
+// 💰 Constrain the type parameter so only objects with `id: string` are allowed
 
 // 🐨 Create a function `getProperty` that:
-// - Takes an object ObjectType and a key Key (where Key is a key of ObjectType)
-// - Returns the value at that key with correct type
-// 💰 Make sure the return type matches the property type
+// - Takes an object and a key that exists on that object
+// - Returns the value at that key with the correct type
+// 💰 Constrain the key type parameter with `keyof`
 
 // const user = { id: '1', name: 'Alice', email: 'alice@example.com' }
 // console.log(getId(user))                    // '1'
 // console.log(getProperty(user, 'email'))     // 'alice@example.com'
 
 // 🐨 Create a function `merge` that:
-// - Takes two objects of types Left and Right (both must be objects)
-// - Returns a merged object of type Left & Right
-// 💰 Both parameters should be objects
+// - Takes two objects
+// - Returns a new object with properties from both
+// - If both have the same key, the second object's value wins
+// 💰 Constrain both type parameters to object types
 
 // const merged = merge({ a: 1 }, { b: 2 })    // { a: 1, b: 2 }
 // console.log(merged)

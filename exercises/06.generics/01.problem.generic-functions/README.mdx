@@ -23,8 +23,18 @@ identity(42) // Inferred: Value is number
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a generic `identity` function that returns its input
-2. Create a generic `last` function that returns the last array element
+1. Create a generic `identity` function that takes a value and returns the same
+   value (preserving its type)
+2. Create a generic `last` function that takes an `Array<Item>` and returns
+   `Item | undefined` (the last element, or `undefined` for an empty array)
+3. Export `identity` and `last` by name
+
+## Completion criteria
+
+- Named exports: `identity`, `last`
+- `identity` returns the same value for strings, numbers, booleans, and `null`
+- `last([1, 2, 3])` → `3`; `last(['a', 'b', 'c'])` → `'c'`; `last([])` →
+  `undefined`
 
 💰 Use a type parameter to make the array function work with any type.
 

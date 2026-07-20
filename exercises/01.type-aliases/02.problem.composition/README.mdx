@@ -17,9 +17,22 @@ self-documenting.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create primitive type aliases for IDs, timestamps, and emails
-2. Create `User` and `Post` types that use these building blocks
-3. Create `userSample` and `postSample` values and export them (tests will import them by name)
+1. Create primitive aliases `ID` (`string`), `Timestamp` (`number`), and `Email`
+   (`string`)
+2. Create a `User` type that uses those primitives for `id`, `createdAt`,
+   `updatedAt`, and `email`, plus a `name: string` field
+3. Create a `Post` type that uses those primitives for `id`, `createdAt`,
+   `updatedAt`, and `authorId`, plus `title` and `content` string fields
+4. Create `userSample` and `postSample` values that match those types and export
+   them by name
+
+## Completion criteria
+
+- Named exports: `userSample`, `postSample`
+- `userSample` has string `id` / `name` / `email` and number `createdAt` /
+  `updatedAt`
+- `postSample` has string `id` / `title` / `content` / `authorId` and number
+  `createdAt` / `updatedAt`
 
 💰 Compose larger types from your primitive aliases.
 

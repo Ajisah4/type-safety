@@ -7,8 +7,16 @@ gives us a clean way to describe those object shapes.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `UsersById` type using `Record`
-2. Create a `RoleCounts` type using `Record`
-3. Create objects that match those types
+1. Create a `UsersById` type using `Record` that maps string IDs to `User`
+2. Create a `RoleCounts` type using `Record` that maps role strings to numbers
+3. Type the provided `usersById` and `roleCounts` objects with those aliases
+   (remove the `@ts-expect-error` comments once the types exist)
+4. Export `usersById` and `roleCounts` by name
+
+## Completion criteria
+
+- Named exports: `usersById`, `roleCounts`
+- `usersById.u1.name` is `'Ava'` and `usersById.u2.role` is `'member'`
+- `roleCounts` deep-equals `{ admin: 1, member: 1 }`
 
 📜 [TypeScript Handbook - Record](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)

@@ -1,10 +1,10 @@
 // Discriminated Unions Pattern
 
-// 🐨 Create discriminated union types for API response states:
-// - Loading: status "loading"
-// - Success: status "success" with data: Array<string>
-// - Error: status "error" with error: string
-// 💰 Replace the placeholder ApiState with a real discriminated union
+// 🐨 Replace ApiState with a discriminated union on `status`.
+// Valid exclusive variants:
+// - loading (no data/error fields)
+// - success (includes string-array data)
+// - error (includes string error)
 
 type ApiState = {
 	status: string
@@ -12,12 +12,9 @@ type ApiState = {
 	error: string
 }
 
-// const loadingState: ApiState = { status: 'loading' }
-// console.log(renderState(loadingState))
-// const successState: ApiState = { status: 'success', data: ['a', 'b'] }
-// console.log(renderState(successState))
-// const errorState: ApiState = { status: 'error', error: 'Network error' }
-// console.log(renderState(errorState))
+// console.log(renderState(/* a loading ApiState */))
+// console.log(renderState(/* a success ApiState with data */))
+// console.log(renderState(/* an error ApiState */))
 
 function renderState(state: ApiState): string {
 	switch (state.status) {
@@ -35,11 +32,11 @@ function renderState(state: ApiState): string {
 	}
 }
 
-// 🐨 Create a discriminated union for payment methods:
-// - Credit card: type "credit_card" with last4 and expiry strings
-// - PayPal: type "paypal" with email string
-// - Bank transfer: type "bank" with accountNumber string
-// 💰 Replace the placeholder PaymentMethod with a real discriminated union
+// 🐨 Replace PaymentMethod with a discriminated union on `type`.
+// Valid exclusive variants:
+// - credit card (last4 + expiry strings)
+// - PayPal (email string)
+// - bank transfer (accountNumber string)
 
 type PaymentMethod = {
 	type: string
@@ -49,12 +46,9 @@ type PaymentMethod = {
 	accountNumber: string
 }
 
-// const card: PaymentMethod = { type: 'credit_card', last4: '1234', expiry: '12/25' }
-// console.log(describePayment(card))
-// const paypal: PaymentMethod = { type: 'paypal', email: 'me@example.com' }
-// console.log(describePayment(paypal))
-// const bank: PaymentMethod = { type: 'bank', accountNumber: '000123' }
-// console.log(describePayment(bank))
+// console.log(describePayment(/* a credit card PaymentMethod */))
+// console.log(describePayment(/* a PayPal PaymentMethod */))
+// console.log(describePayment(/* a bank PaymentMethod */))
 
 function describePayment(method: PaymentMethod): string {
 	switch (method.type) {

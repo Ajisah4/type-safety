@@ -27,16 +27,22 @@ await test('getProductSummary should format products correctly', () => {
 	const noDescResult = solution.getProductSummary(solution.product)
 	const withDescResult = solution.getProductSummary(solution.productWithDesc)
 
-	// Results should include product name and price
 	assert.ok(
-		typeof noDescResult === 'string' && noDescResult.length > 0,
-		'🚨 getProductSummary should return a non-empty string',
+		noDescResult.includes(solution.product.name) &&
+			noDescResult.includes(String(solution.product.price)),
+		'🚨 The summary should include the product name and price',
+	)
+	assert.match(
+		noDescResult,
+		/no description/i,
+		'🚨 The summary should clearly indicate when no description is available',
 	)
 	assert.ok(
-		typeof withDescResult === 'string' && withDescResult.length > 0,
-		'🚨 getProductSummary should return a non-empty string',
+		withDescResult.includes(solution.productWithDesc.name) &&
+			withDescResult.includes(String(solution.productWithDesc.price)) &&
+			withDescResult.includes(solution.productWithDesc.description ?? ''),
+		'🚨 The summary should include the product name, price, and description',
 	)
-	// Results should be different when description is present vs absent
 	assert.notStrictEqual(
 		noDescResult,
 		withDescResult,

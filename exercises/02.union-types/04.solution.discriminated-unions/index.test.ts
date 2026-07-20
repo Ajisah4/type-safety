@@ -20,7 +20,7 @@ await test('renderState should handle loading state', () => {
 	assert.strictEqual(
 		solution.renderState({ status: 'loading' }),
 		'Loading...',
-		'🚨 renderState should return "Loading..." for loading state - check your discriminated union narrowing',
+		'🚨 renderState should report the loading state - check your discriminated union narrowing',
 	)
 })
 

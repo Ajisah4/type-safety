@@ -4,8 +4,8 @@ export type TextInput = string | Array<string>
 
 // 🐨 Create a function `normalizeText` that:
 // - If string, returns it trimmed
-// - If array, joins with spaces and trims
-// 💰 Check the type before processing
+// - If array, joins with spaces and then trims the joined string
+// 💰 Narrow before processing each branch
 
 // console.log(normalizeText('  hello  '))
 // console.log(normalizeText(['hello', 'world']))
@@ -19,9 +19,9 @@ export type User = AdminUser | RegularUser | GuestUser
 
 // 🐨 Create a function `describeUser` that returns a description
 // Narrow by checking which properties exist
-// - Admin: "Admin with X permissions"
-// - Regular: "Regular user (subscription)"
-// - Guest: "Guest user"
+// - Admin: Admin with <permission count> permissions
+// - Regular: Regular user (<subscription>)
+// - Guest: Guest user
 
 // const admin: User = { permissions: ['read', 'write'] }
 // console.log(describeUser(admin))

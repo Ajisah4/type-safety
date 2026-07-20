@@ -34,14 +34,14 @@ This is impossible with type aliases—you'd get a "duplicate identifier" error.
 `declare global`, you can augment interfaces from other modules.
 
 ```ts
-// config.ts
+// config.ts — must be a module (has an import or export)
 declare global {
 	interface Config {
 		appName: string
 	}
 }
 
-// theme-config.ts
+// theme-config.ts — also a module
 declare global {
 	interface Config {
 		theme: 'light' | 'dark'
@@ -68,8 +68,12 @@ declarations into a single interface!
 **About imports and exports:** We haven't covered modules in detail yet, but
 here's what you need to know:
 
-- `import './file.ts'` - Imports a file to run its code (side effects)
+- `import './file.ts'` - Imports a file to run its side effects / activate merges
 - `export { name }` - Exports a value so other files can use it
+- A `.ts` file is a **module** when it has at least one top-level `import` or
+  `export`. Augmentation files must be modules so they can be imported; if you
+  have nothing else to export, an empty export is enough to mark the file as a
+  module.
 - `declare global` - Creates or augments global types that can be merged across files
 
 For this exercise, you'll import the augment file to activate the declaration
@@ -80,11 +84,22 @@ properly later!
 
 🐨 Open <InlineFile file="index.ts" /> and <InlineFile file="config-augment.ts" />:
 
-1. In `index.ts`, use `declare global` to declare the `Config` interface with
-   `appName`
-2. In `config-augment.ts`, use `declare global` to augment `Config` with `theme`
-   and `maxConnections`
-3. In `index.ts`, import `config-augment.ts` to activate the merge
-4. Create a config object with all merged properties (appName, theme, maxConnections)
+1. In `index.ts`, use `declare global` to declare `Config` with `appName: string`
+2. In `config-augment.ts`, use `declare global` to augment `Config` with
+   `theme: 'light' | 'dark'` and `maxConnections: number`, and make the file a
+   module so it can be imported
+3. In `index.ts`, side-effect import `./config-augment.ts` to activate the merge
+4. Create a `config` object with all merged properties (`appName`, `theme`,
+   `maxConnections`)
+5. Implement `getTheme(config: Config)` that returns `config.theme`
+6. Export `config` and `getTheme` by name
+
+## Completion criteria
+
+- Named exports: `config`, `getTheme`
+- `config.appName` is a string; `config.theme` is `'light'` or `'dark'`;
+  `config.maxConnections` is a number
+- `getTheme(config)` returns that theme value
+- `config-augment.ts` is importable as a module
 
 📜 [TypeScript Handbook - Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)

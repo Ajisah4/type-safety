@@ -30,22 +30,44 @@ The app will start on `http://localhost:5173` (or another port if 5173 is busy).
 
 ### In `utils.ts`:
 
-1. **Type Definitions** - Create discriminated unions, type aliases, and interfaces
-2. **formatProjectStatus** - Handle different project status variants
-3. **filterByPriority** - Generic function to filter by priority
-4. **getUserDisplayName** - Handle null user values
-5. **canManageTasks** - Narrow user roles
-6. **updateTaskProperty** - Generic function with keyof constraints
-7. **getTasksByAssignee** - Handle null and string assignee IDs
-8. **createProjectUpdate** - Transition between project statuses
+1. **Type Definitions** - `ProjectStatus`, `Priority`, `Task`, `UserRole`, `User`
+   (replace the `any` placeholders)
+2. **formatProjectStatus** - exact strings:
+   - planning → `Project is in planning phase`
+   - active → `Project started on {startDate}`
+   - completed → `Project completed on {endDate} (started {startDate})`
+3. **filterByPriority** - return items whose `priority` matches the given value
+4. **getUserDisplayName** - `null` → `Unassigned`; otherwise `{name} ({role})`
+5. **canManageTasks** - `true` for `'admin'` / `'manager'`, otherwise `false`
+6. **updateTaskProperty** - return a new task with one property updated
+7. **getTasksByAssignee** - filter by `assigneeId`, including the `null`
+   (unassigned) case
+8. **createProjectUpdate** - takes current status plus `'start' | 'complete'` and
+   returns the next `ProjectStatus`. On `'start'`, move `planning` → `active`
+   and set `startDate`. On `'complete'`, move `active` → `completed`, keep
+   `startDate`, and set `endDate`. Choose ISO date strings inside this helper
+   (the function signature does not take a date argument).
 
 ### In `app.tsx`:
 
-1. Use `filterByPriority` to filter tasks
-2. Use `getTasksByAssignee` to filter by assignee
-3. Use `formatProjectStatus` to display project status
-4. Use `updateTaskProperty` to toggle task completion
-5. Use `createProjectUpdate` to transition project statuses
+1. Use `filterByPriority` when a priority other than `'all'` is selected
+2. Use `getTasksByAssignee` with `selectedUserId`
+3. Use `formatProjectStatus` for `statusDisplay`
+4. Use `updateTaskProperty` to toggle `completed` in `handleTaskToggle`
+5. Call `createProjectUpdate` from the start/complete handlers and store the
+   returned status (dates are produced by the helper, not passed from the UI)
+
+## What success looks like
+
+With `npm run dev` open:
+
+- Priority and assignee filters change which tasks appear
+- Project status text matches `formatProjectStatus` for planning / active /
+  completed
+- Start / Complete project buttons transition status and update the status text
+- Toggling a task updates its completed state through `updateTaskProperty`
+- Assignee labels use `getUserDisplayName` (including `Unassigned`)
+- Manage-task UI respects `canManageTasks` for the current user's role
 
 ## Tips
 

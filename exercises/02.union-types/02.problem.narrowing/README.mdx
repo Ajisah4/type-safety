@@ -18,9 +18,27 @@ function process(value: string | Array<string>) {
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Write a function that handles `string | Array<string>`
-2. Write a function that handles objects with different shapes
-3. Use the `in` operator to check for properties
+1. Implement `normalizeText` for the exported `TextInput` type
+   - string → trimmed
+   - array → join with spaces, then trim the joined result
+2. Implement `describeUser` for the exported `User` type by checking which
+   properties exist
+   - admin (`permissions`) → Admin with N permissions (N is the count)
+   - regular (`subscription`) → Regular user (subscription value)
+   - guest → Guest user
+3. Export `normalizeText` and `describeUser` by name
+
+## Completion criteria
+
+- Named exports: `normalizeText`, `describeUser`
+- `normalizeText('  hello  ')` → `hello`
+- `normalizeText(['hello', 'world'])` → `hello world`
+- `normalizeText(['  hello  ', '  world  '])` → `hello     world` (join first,
+  then trim only the outer edges)
+- `describeUser({ permissions: ['read', 'write'] })` →
+  `Admin with 2 permissions`
+- `describeUser({ subscription: 'free' })` → `Regular user (free)`
+- `describeUser({ guestCode: 'G-001' })` → `Guest user`
 
 📜 [TypeScript Handbook - Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
 

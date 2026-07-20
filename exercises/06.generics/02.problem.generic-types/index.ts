@@ -1,20 +1,19 @@
 // Generic Types and Interfaces
 
-// 🐨 Create a LoadingState<Data> type that represents:
-// - { status: 'idle' }
-// - { status: 'loading' }
-// - { status: 'success', data: Data }
-// - { status: 'error', error: string }
-// 💰 Model all four states with a generic discriminated union
+// 🐨 Create a LoadingState<Data> discriminated union with four exclusive states:
+// - idle (no payload)
+// - loading (no payload)
+// - success (includes data of type Data)
+// - error (includes an error string)
 
-// 🐨 Create a function `createSuccess<Data>` that:
-// - takes data of type Data
-// - returns a LoadingState<Data> with status 'success'
+// 🐨 Create a function `createSuccess` that takes data and returns a success
+// LoadingState carrying that data
 
-// 🐨 Create a function `createError<Data>` that:
-// - takes an error message string
-// - returns a LoadingState<Data> with status 'error'
+// 🐨 Create a function `createError` that takes an error message and returns an
+// error LoadingState carrying that message
+// 💰 Keep a Data type parameter even though error states have no data field
 
+// type User = { id: number; name: string }
 // const userState = createSuccess({ id: 1, name: 'Ada' })
 // console.log(userState)
 // const errorState = createError<User>('Failed to load user')

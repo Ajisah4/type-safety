@@ -7,9 +7,21 @@ this.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a type for values that can be string or number
-2. Create a type for IDs that can be string or number
-3. Write functions that handle union types
+1. Create a type `ID` that is `string | number`
+2. Implement `formatId(id: ID): string` — number IDs get a `#` prefix; string IDs
+   are returned unchanged (including `0` and `''`)
+3. Create a type `Result` that is `string | Error`
+4. Implement `processResult(result: Result): string` — strings become
+   `Success: <value>`; Errors become `Error: <message>`
+5. Export `formatId` and `processResult` by name
+
+## Completion criteria
+
+- Named exports: `formatId`, `processResult`
+- `formatId(123)` → `'#123'`; `formatId('abc')` → `'abc'`; `formatId(0)` →
+  `'#0'`; `formatId('')` → `''`
+- `processResult('Done!')` → `'Success: Done!'`
+- `processResult(new Error('Oops'))` → `'Error: Oops'`
 
 <callout-info>
 	`typeof` checks if a value is a string, number, boolean, or symbol. For

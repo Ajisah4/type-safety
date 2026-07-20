@@ -5,11 +5,10 @@
 // - appName: string
 
 // 🐨 Import the config-augment module to activate declaration merging
-// 💰 You'll need to use: import './config-augment.ts'
+// 💰 Side-effect import: import './config-augment.ts'
 
 // 🐨 Create a `config` object that satisfies the merged Config interface
 // (it should have appName, theme, and maxConnections)
-// 💰 The Config interface will be merged with properties from config-augment.ts
 
 // 🐨 Create a `getTheme` function that takes a Config and returns its theme
 
