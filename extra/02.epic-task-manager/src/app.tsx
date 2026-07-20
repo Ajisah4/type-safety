@@ -108,14 +108,14 @@ function App() {
 	}
 
 	const handleProjectStart = () => {
-		// 🐨 Use createProjectUpdate to transition from 'planning' to 'active'
-		// Set startDate to new Date().toISOString()
+		// 🐨 Call createProjectUpdate(projectStatus, 'start') and store the result
+		// 💰 startDate is set inside createProjectUpdate
 		console.log('Start project')
 	}
 
 	const handleProjectComplete = () => {
-		// 🐨 Use createProjectUpdate to transition from 'active' to 'completed'
-		// Set endDate to new Date().toISOString()
+		// 🐨 Call createProjectUpdate(projectStatus, 'complete') and store the result
+		// 💰 endDate is set inside createProjectUpdate
 		console.log('Complete project')
 	}
 

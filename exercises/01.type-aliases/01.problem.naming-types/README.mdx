@@ -7,8 +7,23 @@ clean it up with type aliases.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `User` type alias for the user object shape
-2. Create a `Product` type alias for the product object shape
-3. Use these types to annotate variables and function parameters
+1. Create a `User` type alias with `id`, `name`, and `email` (all `string`)
+2. Create a `Product` type alias with `id`/`name` (`string`), `price`
+   (`number`), and `inStock` (`boolean`)
+3. Create `userSample` and `productSample` values typed with those aliases
+4. Implement `greet(user)` so it returns `Hello, <name>!` using the user's name
+5. Implement `formatProduct(product)` so the returned string includes the product
+   name, the price, and a stock status that differs for in-stock vs out-of-stock
+6. Export `greet`, `formatProduct`, `userSample`, and `productSample` by name
+
+## Completion criteria
+
+- Named exports: `greet`, `formatProduct`, `userSample`, `productSample`
+- `greet({ id: '1', name: 'Alice', email: 'alice@example.com' })` returns
+  `Hello, Alice!`
+- `formatProduct` output for an in-stock product includes its name and price,
+  and differs from an otherwise-equivalent out-of-stock product's output because
+  of stock status
+- `userSample` / `productSample` field types match the aliases above
 
 📜 [TypeScript Handbook - Type Aliases](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases)

@@ -2,18 +2,25 @@
 
 <EpicVideo url="https://www.epicweb.dev/workshops/type-safety/8-enums/enum-vs-union" />
 
-👨‍💼 You've already created enums. Now let's migrate them to union types which is
-the preferred approach in modern TypeScript.
-
-The code already has an enum-based logging function. Your task is to create a
-union-based version.
+👨‍💼 You've already practiced string enums. Modern TypeScript often prefers string
+literal unions for the same job. The starter includes an enum-based
+`logWithEnum` as a reference; add a union-based logging function next to it.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a new function `logWithUnion` that uses an inline union type instead
-   of the `LogLevel` enum
-2. The union type should be: `'debug' | 'info' | 'warn' | 'error'`
-3. Export both functions so we can compare them
+1. Leave the existing `LogLevel` enum and `logWithEnum` function in the file as
+   a reference
+2. Add `logWithUnion(level, message)` that accepts the same four levels as a
+   string literal union (`'debug' | 'info' | 'warn' | 'error'`) instead of the
+   enum type, and logs in the same `[LEVEL] message` style
+3. Export `logWithUnion` by name (you do not need to export the enum version)
+
+## Completion criteria
+
+- Named export: `logWithUnion`
+- Calling `logWithUnion` with `'debug' | 'info' | 'warn' | 'error'` and a message
+  string runs without throwing
+- The parameter type is a string literal union (not the `LogLevel` enum)
 
 📜 [TypeScript Handbook - Literal Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types)
 

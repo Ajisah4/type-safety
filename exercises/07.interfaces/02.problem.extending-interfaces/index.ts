@@ -15,12 +15,12 @@
 // - name: string
 // - price: number
 
-// 🐨 Create an AuditLog interface that extends Timestamps with:
+// 🐨 Create an AuditLog interface that extends Timestamps (not Entity) with:
 // - action: string
 // - userId: string
 
 // 🐨 Create sample `user`, `product`, `log`, and `entity` values that match your
-// interfaces.
+// interfaces. Use `new Date(...)` for timestamp fields.
 // 🐨 Export `user`, `product`, `log`, and `entity`. Tests import these by name
 // and check their shapes.
 // export { user, product, log, entity }

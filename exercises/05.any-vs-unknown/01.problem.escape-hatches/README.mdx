@@ -7,8 +7,21 @@ how `any` and `unknown` differ.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. See how `any` allows anything (dangerous!)
-2. See how `unknown` requires checks (safe!)
-3. Refactor `any` code to use `unknown`
+1. Read `dangerousProcess` — it uses `any` and can call methods unsafely
+2. Implement `safeProcess` so unknown input is handled safely. Required outputs:
+   - string → uppercased (`hello` → `HELLO`)
+   - number → two decimal places (`123` → `123.00`, `3.14159` → `3.14`)
+   - boolean → `true` / `false`
+   - other values → their usual string conversion (`null` → `null`, `undefined`
+     → `undefined`, and `{}` → `[object Object]`)
+3. Export `safeProcess` by name (you can leave `dangerousProcess` as the contrast
+   example)
+
+## Completion criteria
+
+- Named export: `safeProcess`
+- Matches the string / number / boolean outputs above
+- Matches the listed outputs for `null`, `undefined`, and plain objects without
+  throwing
 
 📜 [TypeScript Handbook - Unknown](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown)

@@ -1,7 +1,7 @@
 // Enum vs Union Types
-// Start with an enum, migrate to unions
+// Enum-based helper kept as a reference; add a union-based function beside it
 
-// Enum approach
+// Enum approach (reference — leave this in place)
 enum LogLevel {
 	Debug = 'debug',
 	Info = 'info',
@@ -13,10 +13,10 @@ function logWithEnum(level: LogLevel, message: string): void {
 	console.log(`[${level.toUpperCase()}] ${message}`)
 }
 
-// 🐨 Migrate the function above to use union types instead of the enum
-// Replace the LogLevel enum parameter with an inline union type
-// The function should accept: 'debug' | 'info' | 'warn' | 'error'
-// Name the new function `logWithUnion`
+// 🐨 Add `logWithUnion(level, message): void` that uses a string literal union
+// instead of the LogLevel enum for the level parameter:
+// 'debug' | 'info' | 'warn' | 'error'
+// 💰 Log in the same style as logWithEnum: `[LEVEL] message`
 
-// 🐨 Export `logWithUnion`. Tests import this by name and check log output.
+// 🐨 Export `logWithUnion`. Tests import this by name.
 // export { logWithUnion }

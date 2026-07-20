@@ -20,8 +20,20 @@ const dog: Dog = { name: 'Rex', breed: 'German Shepherd' }
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a base `Entity` interface with common fields
-2. Extend it to create `User` and `Product` interfaces
-3. Use multiple inheritance with `extends A, B`
+1. Create a `Timestamps` interface with `createdAt: Date` and `updatedAt: Date`
+2. Create an `Entity` interface that extends `Timestamps` and adds `id: string`
+3. Create `User` and `Product` interfaces that extend `Entity` with their own
+   fields (`name`/`email` and `name`/`price`)
+4. Create an `AuditLog` interface that extends `Timestamps` (not `Entity`) with
+   `action: string` and `userId: string`
+5. Create sample `user`, `product`, `log`, and `entity` values and export them by
+   name
+
+## Completion criteria
+
+- Named exports: `user`, `product`, `log`, `entity`
+- `user` / `product` include `id`, timestamps (`Date`), and their own fields
+- `log` has timestamps plus `action` / `userId` (no `id` required)
+- `entity` has `id` plus `createdAt` / `updatedAt` as `Date`s
 
 📜 [TypeScript Handbook - Extending Types](https://www.typescriptlang.org/docs/handbook/2/objects.html#extending-types)

@@ -87,11 +87,11 @@ await test('AuditLog should have timestamps and action', () => {
 	)
 	assert.ok(
 		solution.log.createdAt instanceof Date,
-		'🚨 log.createdAt should be a Date instance - ensure AuditLog extends Entity interface',
+		'🚨 log.createdAt should be a Date instance - ensure AuditLog extends Timestamps',
 	)
 	assert.ok(
 		solution.log.updatedAt instanceof Date,
-		'🚨 log.updatedAt should be a Date instance - ensure AuditLog extends Entity interface',
+		'🚨 log.updatedAt should be a Date instance - ensure AuditLog extends Timestamps',
 	)
 })
 

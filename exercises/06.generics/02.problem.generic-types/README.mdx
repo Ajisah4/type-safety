@@ -41,10 +41,25 @@ type guards to ensure the data is the correct shape.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a generic `LoadingState<Data>` type for async operations
-2. Create helper functions `createSuccess<Data>` and `createError<Data>`
-3. See how TypeScript narrows the type based on the discriminated union
+1. Create a generic `LoadingState<Data>` discriminated union with four statuses:
+   - idle — no payload
+   - loading — no payload
+   - success — carries `data` of type `Data`
+   - error — carries an `error` string
+2. Implement `createSuccess` so it returns a success state whose `data` is the
+   argument you passed in
+3. Implement `createError` so it returns an error state whose `error` is the
+   message string you passed in (keep it generic over `Data` for typing)
+4. Export `createSuccess` and `createError` by name
 
-💰 Model idle, loading, success, and error states with a generic discriminated union.
+## Completion criteria
+
+- Named exports: `createSuccess`, `createError`
+- Success results have status `success` and preserve the input in `data`
+- Error results have status `error` and preserve the message in `error`
+- Works with string, number, and object data via generics
+
+💰 Model idle, loading, success, and error as exclusive variants of one generic
+type.
 
 📜 [TypeScript Handbook - Generic Types](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-types)

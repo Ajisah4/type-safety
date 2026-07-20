@@ -31,8 +31,19 @@ function speak(pet: Pet) {
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create type guards for `TextInput` and use them in `normalizeText`
-2. Create type guards for each `User` variant
-3. Use the type guards to implement `describeUser`
+1. Create an `isStringArray` type guard and use it inside `normalizeText`
+2. Create `isAdminUser`, `isRegularUser`, and `isGuestUser` type guards and use
+   them in `describeUser`
+3. Export `isStringArray`, `normalizeText`, `isAdminUser`, `isRegularUser`,
+   `isGuestUser`, and `describeUser` by name
+
+## Completion criteria
+
+- Named exports listed above
+- `isStringArray` is true for string arrays and false for strings / number arrays
+- User guards are true only for their own shape
+- `normalizeText` / `describeUser` keep the same exact outputs as the Narrowing
+  step (for example `Admin with 2 permissions`, `Regular user (free)`,
+  `Guest user`)
 
 📜 [TypeScript Handbook - Type Guards](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)

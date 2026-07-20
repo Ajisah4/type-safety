@@ -2,10 +2,10 @@
 
 export type TextInput = string | Array<string>
 
-// 🐨 Create a type guard `isStringArray` that checks if a value is an array of strings
-// 💰 Use Array.isArray and verify each item is a string
+// 🐨 Create a type guard `isStringArray` for arrays of strings
+// 💰 Confirm it's an array and every item is a string
 
-// 🐨 update this function to use the type guard
+// 🐨 Update `normalizeText` to use `isStringArray`
 function normalizeText(input: TextInput) {
 	if (Array.isArray(input)) {
 		return input.join(' ').trim()
@@ -20,13 +20,13 @@ type GuestUser = { guestCode: string }
 
 export type User = AdminUser | RegularUser | GuestUser
 
-// 🐨 Create type guards:
-// - `isAdminUser` (permissions array)
-// - `isRegularUser` (subscription string)
-// - `isGuestUser` (guestCode string)
-// 💰 These should return `value is ...` so TypeScript narrows
+// 🐨 Create type guards for each User variant:
+// - `isAdminUser` — permissions array of strings
+// - `isRegularUser` — subscription free or premium
+// - `isGuestUser` — string guestCode
+// 💰 Accept unknown input; return false for non-matching shapes
 
-// 🐨 update this function to use the type guards
+// 🐨 Update `describeUser` to use the type guards (same output strings as before)
 function describeUser(user: User) {
 	if ('permissions' in user) {
 		return `Admin with ${user.permissions.length} permissions`

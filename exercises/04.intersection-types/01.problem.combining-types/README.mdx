@@ -7,8 +7,22 @@ blocks.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create base types for common properties
-2. Combine them with `&` to create entity types
-3. Use the combined types in functions
+1. Create base types with these runtime field types:
+   - `WithId` — `id` (`string`)
+   - `WithTimestamps` — `createdAt` and `updatedAt` (`Date`)
+   - `WithAuthor` — `authorId` and `authorName` (`string`)
+2. Build entity types by intersecting those bases (and adding entity-specific
+   fields):
+   - `User` — id + timestamps, plus `name` and `email` (`string`)
+   - `Post` — id + timestamps + author, plus `title` and `content` (`string`)
+   - `Comment` — id + timestamps + author, plus `text` and `postId` (`string`)
+3. Create sample `user`, `post`, and `comment` values and export them by name
+
+## Completion criteria
+
+- Named exports: `user`, `post`, `comment`
+- `user` has string `id` / `name` / `email` and `Date` `createdAt` / `updatedAt`
+- `post` / `comment` also include author fields (`authorId`, `authorName`) and
+  their own content fields (`title`/`content` or `text`/`postId`)
 
 📜 [TypeScript Handbook - Intersection Types](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)

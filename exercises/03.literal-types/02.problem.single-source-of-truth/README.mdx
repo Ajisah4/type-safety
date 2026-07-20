@@ -7,10 +7,19 @@ Using `as const` lets us derive types directly from the runtime object.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Add `as const` to the `routes` object
-2. Create `RouteName` and `RoutePath` types from the object
-3. Fix the `defaultRoute` assignment
-4. Implement `getRoutePath` to return the route path for a given name
+1. Add `as const` to the `routes` object so `routes.home` stays the literal `'/'`
+2. Create `RouteName` from the keys of `routes` and `RoutePath` from the values
+3. Remove the `@ts-expect-error` once `defaultRoute: '/'` type-checks
+4. Implement `getRoutePath(name: RouteName): RoutePath` so it returns the path
+   for that name from `routes`
+5. Export `routes`, `defaultRoute`, and `getRoutePath` by name
+
+## Completion criteria
+
+- Named exports: `routes`, `defaultRoute`, `getRoutePath`
+- `getRoutePath('home')` → `'/'`
+- `getRoutePath('login')` → `'/login'`
+- `getRoutePath('settings')` → `'/settings'`
 
 💰 `keyof typeof` gives you the keys; indexed access gives you the values.
 

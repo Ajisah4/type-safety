@@ -16,9 +16,22 @@ enum OrderStatus {
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create an `OrderStatus` enum with the statuses above
-2. Create an order object that uses the enum
-3. Create a function that handles each status
+1. Create a string enum `OrderStatus` with the members and values shown above
+2. Create an `order` object with `id: string`, `status: OrderStatus`, and
+   `customerName: string`
+3. Implement `getStatusMessage(status: OrderStatus): string` so each enum member
+   returns a distinct non-empty message (exact wording is up to you)
+4. Export `OrderStatus`, `order`, and `getStatusMessage` by name
+
+## Completion criteria
+
+- Named exports: `OrderStatus`, `order`, `getStatusMessage`
+- `OrderStatus.Pending === 'pending'` (and the other members match their string
+  values)
+- `order.status` is one of the enum values; `id` and `customerName` are non-empty
+  strings
+- `getStatusMessage` returns four different non-empty strings for the four
+  statuses
 
 📜 [TypeScript Handbook - Enums](https://www.typescriptlang.org/docs/handbook/enums.html)
 

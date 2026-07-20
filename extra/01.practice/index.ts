@@ -70,9 +70,9 @@
 
 // 🐨 Create a function `processPayment` that:
 // - Takes a Payment
-// - Returns a string describing the payment method
+// - Returns a distinct string describing the payment method for each variant
 // - Uses type narrowing to handle each variant
-// 💰 Use a switch statement on the 'type' property
+// 💰 Switch on the 'type' property; exact wording is up to you
 
 // Test Section 2:
 // const cardPayment: Payment = {
@@ -98,13 +98,9 @@
 // SECTION 3: Literal Types & Single Source of Truth
 // ============================================================================
 
-// 🐨 Create a const object `orderStatuses` with:
-// - pending: 'pending'
-// - processing: 'processing'
-// - shipped: 'shipped'
-// - delivered: 'delivered'
-// - cancelled: 'cancelled'
-// 💰 Add `as const` to preserve literal types
+// 🐨 Create a const object `orderStatuses` with keys/values:
+// pending, processing, shipped, delivered, cancelled (each key maps to the same string)
+// 💰 Add `as const` to the object below so the values stay literal types
 
 const orderStatuses = {
 	pending: 'pending',
@@ -114,15 +110,14 @@ const orderStatuses = {
 	cancelled: 'cancelled',
 }
 
-// 🐨 Create a type `OrderStatus` using `keyof typeof orderStatuses`
+// 🐨 Create a type `OrderStatus` from the keys of `orderStatuses`
 
-// 🐨 Create a type `OrderStatusValue` using the values from orderStatuses
-// 💰 Use `typeof orderStatuses[OrderStatus]`
+// 🐨 Create a type `OrderStatusValue` from the values of `orderStatuses`
 
 // 🐨 Create a function `getStatusLabel` that:
 // - Takes an OrderStatus
 // - Returns the corresponding value from orderStatuses
-// 💰 Use the orderStatuses object as the single source of truth
+// 💰 Look up the label on orderStatuses (single source of truth)
 
 // Test Section 3:
 // console.log('Pending status:', getStatusLabel('pending'))
@@ -134,9 +129,9 @@ const orderStatuses = {
 // ============================================================================
 
 // 🐨 Create a generic function `getProperty` that:
-// - Takes an object ObjectType and a key Key (where Key is a key of ObjectType)
+// - Takes an object and a key that exists on that object
 // - Returns the value at that key with the correct type
-// 💰 Type: <ObjectType, Key extends keyof ObjectType>(obj: ObjectType, key: Key) => ObjectType[Key]
+// 💰 Constrain the key with `keyof` so invalid keys are rejected
 
 // 🐨 Create a generic function `hasProperty` that:
 // - Takes an object and a property name
@@ -144,16 +139,14 @@ const orderStatuses = {
 // 💰 Use the `in` operator for type narrowing
 
 // 🐨 Create a generic function `mergeObjects` that:
-// - Takes two objects Left and Right (both must be objects)
-// - Returns a merged object of type Left & Right
-// 💰 Constrain both parameters to be objects: `extends Record<string, unknown>`
+// - Takes two objects
+// - Returns a merged object combining both (intersection of their types)
+// 💰 Constrain both parameters to object-like types
 
 // 🐨 Create a generic function `filterByProperty` that:
-// - Takes an array of items with a property P
-// - Takes a property name K (where K is a key of each item)
-// - Takes a value V (where V is the type of that property)
-// - Returns items where the property matches the value
-// 💰 Type: <T, K extends keyof T>(items: Array<T>, key: K, value: T[K]) => Array<T>
+// - Takes an array of items, a property key, and a value
+// - Returns only items where that property equals the value
+// 💰 Constrain the key with `keyof` and type the value from the item
 
 // Test Section 4:
 // const testObj = { name: 'Alice', age: 30, active: true }
@@ -216,14 +209,14 @@ const orderStatuses = {
 
 // 🐨 Create a function `safeParseJson` that:
 // - Takes an unknown value
-// - Returns an object or null
+// - Returns a plain object or null (not arrays/null from JSON)
 // - Uses type guards to safely parse JSON
-// 💰 Check if the value is a string, parse it, then validate it's an object
+// 💰 If it's a string, parse it; only return non-null objects
 
 // 🐨 Create a function `isStringArray` that:
 // - Takes an unknown value
-// - Returns a type guard: value is Array<string>
-// 💰 Check if it's an array and all elements are strings
+// - Returns a type guard for Array<string>
+// 💰 Confirm it's an array and every element is a string
 
 // Test Section 6:
 // console.log('Parse JSON:', safeParseJson('{"name": "Alice"}'))
@@ -254,9 +247,9 @@ const orderStatuses = {
 // - assigneeId: string | null
 
 // 🐨 Create a generic function `updateTaskMetadata` that:
-// - Takes a Task and a key-value pair for metadata
-// - Returns a new Task with updated metadata
-// 💰 Use generics to ensure type safety for the metadata value
+// - Takes a Task, a metadata key (string), and a metadata value
+// - Returns a new Task with that key set/updated in `metadata`
+// 💰 Do not mutate the original task; spread a new metadata object
 
 // Test Section 7:
 // const task: Task = {

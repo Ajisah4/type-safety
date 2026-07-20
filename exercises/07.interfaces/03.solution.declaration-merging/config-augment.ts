@@ -6,3 +6,5 @@ declare global {
 		maxConnections: number
 	}
 }
+
+export {}

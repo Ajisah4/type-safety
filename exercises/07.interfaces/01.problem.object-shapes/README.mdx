@@ -7,7 +7,25 @@ way to define object shapes in TypeScript.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `Product` interface with a union type property
-2. Create a function that accepts this interface
+1. Create a `Product` interface with:
+   - `id: string`, `name: string`, `price: number`
+   - `status: 'active' | 'inactive' | 'discontinued'`
+   - optional `description?: string`
+2. Implement `getProductSummary(product: Product): string` that includes the
+   name, price, and either the description or a clear no-description fallback
+   (intended shape: name, price, then description text)
+3. Create `product` (no description) and `productWithDesc` (with
+   `description: 'Has description'`) sample values
+4. Export `getProductSummary`, `product`, and `productWithDesc` by name
+
+## Completion criteria
+
+- Named exports: `getProductSummary`, `product`, `productWithDesc`
+- Both samples use a valid `status` union member
+- `product.description` is `undefined`; `productWithDesc.description` is
+  `'Has description'`
+- Summary includes name and price, and uses the description when present
+  (otherwise a no-description fallback) so the two samples produce different
+  strings
 
 📜 [TypeScript Handbook - Interfaces](https://www.typescriptlang.org/docs/handbook/2/objects.html)

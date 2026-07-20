@@ -4,7 +4,7 @@ const routes = {
 	settings: '/settings',
 }
 
-// 🐨 Create a `RouteName` type using `keyof typeof routes`
+// 🐨 Create a `RouteName` type from the keys of `routes`
 
 // 🐨 Create a `RoutePath` type from the values of `routes`
 
@@ -12,7 +12,7 @@ const routes = {
 // @ts-expect-error - 💣 remove this comment
 const defaultRoute: '/' = routes.home
 
-// 🐨 Implement `getRoutePath` to return the path for a route name
+// 🐨 Implement `getRoutePath(name: RouteName): RoutePath` using `routes`
 
 // 🐨 Export `routes`, `defaultRoute`, and `getRoutePath` for tests.
 // export { routes, defaultRoute, getRoutePath }

@@ -2,19 +2,19 @@
 
 // 🐨 Create a type `ID` that can be string or number
 
-// 🐨 Create a function `formatId` that takes an ID and returns a string
-// If it's a number, prefix with '#'
-// If it's a string, return as-is
+// 🐨 Create a function `formatId(id: ID): string`
+// - number → prefix with '#' (including 0 → '#0')
+// - string → return as-is (including '')
 
 // console.log(formatId(123))      // "#123"
 // console.log(formatId('abc'))    // "abc"
 
 // 🐨 Create a type `Result` that can be string (success) or Error (failure)
 
-// 🐨 Create a function `processResult` that takes a Result
-// If it's a string, return "Success: [value]"
-// If it's an Error, return "Error: [message]"
-// 💰 Check the type before accessing properties
+// 🐨 Create a function `processResult(result: Result): string`
+// - string → `Success: ${value}`
+// - Error → `Error: ${message}`
+// 💰 Narrow before reading Error.message
 
 // console.log(processResult('Done!'))          // "Success: Done!"
 // console.log(processResult(new Error('Oops'))) // "Error: Oops"

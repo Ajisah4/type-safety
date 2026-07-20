@@ -58,11 +58,10 @@ export function formatProjectStatus(status: ProjectStatus): string {
 }
 
 // 🐨 Create a generic function `filterByPriority` that:
-// - Takes an array of items with a `priority: Priority` property
+// - Takes an array of items that each have a `priority: Priority` property
 // - Takes a Priority value to filter by
 // - Returns a new array of items matching that priority
-// 💰 Use a generic constraint to ensure items have a priority property
-// 💰 Type: <T extends { priority: Priority }>(items: Array<T>, priority: Priority) => Array<T>
+// 💰 Constrain the item type so it must include `priority`
 
 export function filterByPriority<T extends { priority: Priority }>(
 	items: Array<T>,
@@ -99,10 +98,9 @@ export function canManageTasks(role: UserRole): boolean {
 }
 
 // 🐨 Create a generic function `updateTaskProperty` that:
-// - Takes a Task, a key K (where K is a key of Task), and a value of type Task[K]
-// - Returns a new Task with that property updated
-// 💰 Use generics with keyof to ensure type safety
-// 💰 Type: <K extends keyof Task>(task: Task, key: K, value: Task[K]) => Task
+// - Takes a Task, a key of Task, and a value matching that property's type
+// - Returns a new Task with that property updated (do not mutate the original)
+// 💰 Constrain the key with `keyof Task`
 
 export function updateTaskProperty<K extends keyof Task>(
 	task: Task,
@@ -133,11 +131,10 @@ export function getTasksByAssignee(
 
 // 🐨 Create a function `createProjectUpdate` that:
 // - Takes a ProjectStatus and an update type: 'start' | 'complete'
-// - Returns a new ProjectStatus
-// - 'start' transitions 'planning' -> 'active' (adds startDate)
-// - 'complete' transitions 'active' -> 'completed' (adds endDate)
-// 💰 Use discriminated unions and exhaustive checking
-// 💰 Type: (status: ProjectStatus, update: 'start' | 'complete') => ProjectStatus
+// - Returns a new ProjectStatus (this helper chooses the date strings)
+// - 'start': planning -> active (set startDate)
+// - 'complete': active -> completed (keep startDate, set endDate)
+// 💰 Produce ISO date strings inside this function; the signature has no date arg
 
 export function createProjectUpdate(
 	status: ProjectStatus,

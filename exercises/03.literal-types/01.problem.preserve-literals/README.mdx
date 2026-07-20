@@ -7,10 +7,19 @@ TypeScript widens the booleans to `boolean`, which loses useful information.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Add `as const` to the `roles` object
-2. Create a `Role` type using `keyof typeof roles`
-3. Fix the `adminCanDelete` assignment
-4. Implement `canDeleteUsers` using the `roles` data
+1. Add `as const` to the `roles` object so `roles.admin.canDeleteUsers` stays the
+   literal type `true`
+2. Create a `Role` type from the keys of `roles`
+3. Remove the `@ts-expect-error` once `adminCanDelete: true` type-checks
+4. Implement `canDeleteUsers(role: Role): boolean` using the `roles` data (admin
+   → `true`, editor/viewer → `false`)
+5. Export `roles`, `adminCanDelete`, and `canDeleteUsers` by name
+
+## Completion criteria
+
+- Named exports: `roles`, `adminCanDelete`, `canDeleteUsers`
+- `canDeleteUsers('admin')` is `true`; `'editor'` and `'viewer'` are `false`
+- With `as const`, `adminCanDelete` can be annotated as the literal `true`
 
 💰 `as const` preserves `true` and `false` as literal types, not just `boolean`.
 
