@@ -1,18 +1,24 @@
+// Creating Types from Object Keys and Values
+
 const routes = {
-	home: '/',
-	login: '/login',
-	settings: '/settings',
-}
+  home: '/',
+  login: '/login',
+  settings: '/settings',
+} as const
 
-// 🐨 Create a `RouteName` type from the keys of `routes`
+// Create a RouteName type from the keys of routes
+type RouteName = keyof typeof routes
 
-// 🐨 Create a `RoutePath` type from the values of `routes`
+// Create a RoutePath type from the values of routes
+type RoutePath = typeof routes[RouteName]
 
-// 🐨 Add `as const` so this stays the literal '/'
-// @ts-expect-error - 💣 remove this comment
+// This is now the literal type '/'
 const defaultRoute: '/' = routes.home
 
-// 🐨 Implement `getRoutePath(name: RouteName): RoutePath` using `routes`
+// Implement getRoutePath using routes
+function getRoutePath(name: RouteName): RoutePath {
+  return routes[name]
+}
 
-// 🐨 Export `routes`, `defaultRoute`, and `getRoutePath` for tests.
-// export { routes, defaultRoute, getRoutePath }
+// Export values and function
+export { routes, defaultRoute, getRoutePath }

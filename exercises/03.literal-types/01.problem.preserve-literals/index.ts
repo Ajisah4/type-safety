@@ -1,25 +1,30 @@
+// Using Values to Create Types
+
 const roles = {
-	admin: {
-		canDeleteUsers: true,
-		canBanUsers: true,
-	},
-	editor: {
-		canDeleteUsers: false,
-		canBanUsers: true,
-	},
-	viewer: {
-		canDeleteUsers: false,
-		canBanUsers: false,
-	},
-}
+  admin: {
+    canDeleteUsers: true,
+    canBanUsers: true,
+  },
+  editor: {
+    canDeleteUsers: false,
+    canBanUsers: true,
+  },
+  viewer: {
+    canDeleteUsers: false,
+    canBanUsers: false,
+  },
+} as const
 
-// 🐨 Create a `Role` type from the keys of `roles`
+// Create a Role type from the keys of roles
+type Role = keyof typeof roles
 
-// 🐨 Add `as const` to the `roles` object so this becomes the literal `true`
-// @ts-expect-error - 💣 remove this comment
+// This is now the literal type true
 const adminCanDelete: true = roles.admin.canDeleteUsers
 
-// 🐨 Implement `canDeleteUsers(role: Role): boolean` using the roles data
+// Implement canDeleteUsers using roles data
+function canDeleteUsers(role: Role): boolean {
+  return roles[role].canDeleteUsers
+}
 
-// 🐨 Export `roles`, `adminCanDelete`, and `canDeleteUsers` for tests.
-// export { roles, adminCanDelete, canDeleteUsers }
+// Export values and function
+export { roles, adminCanDelete, canDeleteUsers }
