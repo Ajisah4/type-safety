@@ -2,13 +2,14 @@
 
 export type TextInput = string | Array<string>
 
-// 🐨 Create a function `normalizeText` that:
-// - If string, returns it trimmed
-// - If array, joins with spaces and then trims the joined string
-// 💰 Narrow before processing each branch
+// Create normalizeText function
+function normalizeText(input: TextInput): string {
+  if (typeof input === 'string') {
+    return input.trim()
+  }
 
-// console.log(normalizeText('  hello  '))
-// console.log(normalizeText(['hello', 'world']))
+  return input.join(' ').trim()
+}
 
 // Different user types
 type AdminUser = { permissions: Array<string> }
@@ -17,19 +18,31 @@ type GuestUser = { guestCode: string }
 
 export type User = AdminUser | RegularUser | GuestUser
 
-// 🐨 Create a function `describeUser` that returns a description
-// Narrow by checking which properties exist
-// - Admin: Admin with <permission count> permissions
-// - Regular: Regular user (<subscription>)
-// - Guest: Guest user
+// Create describeUser function
+function describeUser(user: User): string {
+  if ('permissions' in user) {
+    return `Admin with ${user.permissions.length} permissions`
+  }
+
+  if ('subscription' in user) {
+    return `Regular user (${user.subscription})`
+  }
+
+  return 'Guest user'
+}
+
+// Test
+// console.log(normalizeText('  hello  '))
+// console.log(normalizeText(['hello', 'world']))
 
 // const admin: User = { permissions: ['read', 'write'] }
 // console.log(describeUser(admin))
+
 // const regular: User = { subscription: 'premium' }
 // console.log(describeUser(regular))
+
 // const guest: User = { guestCode: 'guest-1' }
 // console.log(describeUser(guest))
 
-// 🐨 Export `normalizeText` and `describeUser`. Tests import these by name and
-// check the returned strings for each input shape.
-// export { normalizeText, describeUser }
+// Export functions
+export { normalizeText, describeUser }

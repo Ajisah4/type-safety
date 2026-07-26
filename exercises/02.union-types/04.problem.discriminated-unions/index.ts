@@ -1,71 +1,60 @@
 // Discriminated Unions Pattern
 
-// 🐨 Replace ApiState with a discriminated union on `status`.
-// Valid exclusive variants:
-// - loading (no data/error fields)
-// - success (includes string-array data)
-// - error (includes string error)
+// Replace ApiState with a discriminated union on `status`
 
-type ApiState = {
-	status: string
-	data: Array<string>
-	error: string
-}
+type ApiState =
+  | { status: 'loading' }
+  | { status: 'success'; data: Array<string> }
+  | { status: 'error'; error: string }
 
-// console.log(renderState(/* a loading ApiState */))
-// console.log(renderState(/* a success ApiState with data */))
-// console.log(renderState(/* an error ApiState */))
-
+// Render API state
 function renderState(state: ApiState): string {
-	switch (state.status) {
-		case 'loading':
-			return 'Loading...'
-		case 'success':
-			return `Loaded ${state.data.length} items`
-		case 'error':
-			return `Error: ${state.error}`
-		default: {
-			// @ts-expect-error - 💣 remove this comment when ApiState is discriminated
-			const _exhaustive: never = state
-			return _exhaustive
-		}
-	}
+  switch (state.status) {
+    case 'loading':
+      return 'Loading...'
+    case 'success':
+      return `Loaded ${state.data.length} items`
+    case 'error':
+      return `Error: ${state.error}`
+    default: {
+      const _exhaustive: never = state
+      return _exhaustive
+    }
+  }
 }
 
-// 🐨 Replace PaymentMethod with a discriminated union on `type`.
-// Valid exclusive variants:
-// - credit card (last4 + expiry strings)
-// - PayPal (email string)
-// - bank transfer (accountNumber string)
+// Replace PaymentMethod with a discriminated union on `type`
 
-type PaymentMethod = {
-	type: string
-	last4: string
-	expiry: string
-	email: string
-	accountNumber: string
-}
+type PaymentMethod =
+  | {
+      type: 'credit_card'
+      last4: string
+      expiry: string
+    }
+  | {
+      type: 'paypal'
+      email: string
+    }
+  | {
+      type: 'bank'
+      accountNumber: string
+    }
 
-// console.log(describePayment(/* a credit card PaymentMethod */))
-// console.log(describePayment(/* a PayPal PaymentMethod */))
-// console.log(describePayment(/* a bank PaymentMethod */))
-
+// Describe payment method
 function describePayment(method: PaymentMethod): string {
-	switch (method.type) {
-		case 'credit_card':
-			return `Card ending in ${method.last4} (exp: ${method.expiry})`
-		case 'paypal':
-			return `PayPal: ${method.email}`
-		case 'bank':
-			return `Bank account: ${method.accountNumber}`
-		default: {
-			// @ts-expect-error - 💣 remove this comment when PaymentMethod is discriminated
-			const _exhaustive: never = method
-			return _exhaustive
-		}
-	}
+  switch (method.type) {
+    case 'credit_card':
+      return `Card ending in ${method.last4} (exp: ${method.expiry})`
+    case 'paypal':
+      return `PayPal: ${method.email}`
+    case 'bank':
+      return `Bank account: ${method.accountNumber}`
+    default: {
+      const _exhaustive: never = method
+      return _exhaustive
+    }
+  }
 }
 
-// 🐨 Export `renderState` and `describePayment`. Tests import these by name and
-// check the output for each union variant.
-// export { renderState, describePayment }
+// Export functions
+export { renderState, describePayment }
