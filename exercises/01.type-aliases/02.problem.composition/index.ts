@@ -1,23 +1,47 @@
 // Composing Types from Building Blocks
 
-// 🐨 Create primitive type aliases named `ID`, `Timestamp`, and `Email`.
-// 💰 Underlying types: ID → string, Timestamp → number, Email → string
+// Create primitive type aliases
+type ID = string
+type Timestamp = number
+type Email = string
 
-// 🐨 Create a `User` type that uses those primitives for:
-// - id (ID)
-// - createdAt (Timestamp)
-// - updatedAt (Timestamp)
-// - email (Email)
-// and includes a `name` string field.
+// Create User type
+type User = {
+  id: ID
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  email: Email
+  name: string
+}
 
-// 🐨 Create a `Post` type that uses those primitives for:
-// - id (ID)
-// - createdAt (Timestamp)
-// - updatedAt (Timestamp)
-// - authorId (ID)
-// and includes `title` and `content` string fields.
+// Create Post type
+type Post = {
+  id: ID
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  authorId: ID
+  title: string
+  content: string
+}
 
-// 🐨 Create a `userSample` and a `postSample` value that match your types.
-// 🐨 Export `userSample` and `postSample`. Tests will import these by name and
-// verify the fields have the expected runtime types (string vs number).
-// export { userSample, postSample }
+// Create userSample value
+const userSample: User = {
+  id: 'user-123',
+  createdAt: 1722000000,
+  updatedAt: 1722005000,
+  email: 'alice@example.com',
+  name: 'Alice Johnson',
+}
+
+// Create postSample value
+const postSample: Post = {
+  id: 'post-456',
+  createdAt: 1722000000,
+  updatedAt: 1722005000,
+  authorId: 'user-123',
+  title: 'Learning TypeScript',
+  content: 'Type aliases help create reusable and readable code.',
+}
+
+// Export samples
+export { userSample, postSample }

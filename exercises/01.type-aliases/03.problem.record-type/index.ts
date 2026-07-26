@@ -2,33 +2,33 @@
 // Building lookup tables with type aliases
 
 type User = {
-	id: string
-	name: string
-	role: string
+  id: string
+  name: string
+  role: string
 }
 
 const users: Array<User> = [
-	{ id: 'u1', name: 'Ava', role: 'admin' },
-	{ id: 'u2', name: 'Ben', role: 'member' },
+  { id: 'u1', name: 'Ava', role: 'admin' },
+  { id: 'u2', name: 'Ben', role: 'member' },
 ]
 
-// 🐨 Create a UsersById type using Record to map string IDs to User
+// Create a UsersById type using Record to map string IDs to User
+type UsersById = Record<string, User>
 
-// 🐨 Create a RoleCounts type using Record to map role strings to numbers
+// Create a RoleCounts type using Record to map role strings to numbers
+type RoleCounts = Record<string, number>
 
-// 🐨 Type this usersById object as UsersById (remove @ts-expect-error when ready)
-// @ts-expect-error - 💣 remove this comment when you create UsersById
+// Type usersById object as UsersById
 const usersById: UsersById = {
-	u1: users[0],
-	u2: users[1],
+  u1: users[0],
+  u2: users[1],
 }
 
-// 🐨 Type this roleCounts object as RoleCounts (remove @ts-expect-error when ready)
-// @ts-expect-error - 💣 remove this comment when you create RoleCounts
+// Type roleCounts object as RoleCounts
 const roleCounts: RoleCounts = {
-	admin: 1,
-	member: 1,
+  admin: 1,
+  member: 1,
 }
 
-// 🐨 Export `usersById` and `roleCounts`. Tests import these by name.
-// export { usersById, roleCounts }
+// Export variables
+export { usersById, roleCounts }

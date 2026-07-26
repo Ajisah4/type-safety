@@ -1,27 +1,46 @@
 // Creating Reusable Type Aliases
 
-// 🐨 Create a type alias `User` with:
-// - id: string
-// - name: string
-// - email: string
+// Create a type alias User
+type User = {
+  id: string
+  name: string
+  email: string
+}
 
-// 🐨 Create a `userSample` value using the User type
+// Create a userSample value using User type
+const userSample: User = {
+  id: 'u1',
+  name: 'Alice',
+  email: 'alice@example.com',
+}
 
-// 🐨 Create a function `greet` that takes a User and returns:
-// Hello, <name>!  (example: Hello, Alice!)
+// Create greet function
+function greet(user: User): string {
+  return `Hello, ${user.name}!`
+}
 
-// 🐨 Create a type alias `Product` with:
-// - id: string
-// - name: string
-// - price: number
-// - inStock: boolean
+// Create a type alias Product
+type Product = {
+  id: string
+  name: string
+  price: number
+  inStock: boolean
+}
 
-// 🐨 Create a `productSample` value using the Product type
+// Create a productSample value using Product type
+const productSample: Product = {
+  id: 'p1',
+  name: 'Laptop',
+  price: 999.99,
+  inStock: true,
+}
 
-// 🐨 Create a function `formatProduct` that takes a Product and returns a string
-// that includes the name, the price, and a stock status that is different for
-// in-stock vs out-of-stock products (exact wording of the status is up to you)
+// Create formatProduct function
+function formatProduct(product: Product): string {
+  const status = product.inStock ? 'In Stock' : 'Out of Stock'
 
-// 🐨 Export `greet`, `formatProduct`, `userSample`, and `productSample`. Tests
-// import these by name and will check their behavior and shapes.
-// export { greet, formatProduct, userSample, productSample }
+  return `${product.name} - $${product.price} - ${status}`
+}
+
+// Export values and functions
+export { greet, formatProduct, userSample, productSample }
