@@ -1,22 +1,73 @@
 // Combining Types with Intersection
 
-// 🐨 Create base types named `WithId`, `WithTimestamps`, and `WithAuthor`.
-// Required fields / runtime types:
-// - WithId: id (string)
-// - WithTimestamps: createdAt, updatedAt (Date)
-// - WithAuthor: authorId, authorName (string)
+// Create base types
+type WithId = {
+  id: string
+}
 
-// 🐨 Create a User type by intersecting WithId and WithTimestamps,
-// and also include name and email (string)
+type WithTimestamps = {
+  createdAt: Date
+  updatedAt: Date
+}
 
-// 🐨 Create a Post type by intersecting WithId, WithTimestamps, and WithAuthor,
-// and also include title and content (string)
+type WithAuthor = {
+  authorId: string
+  authorName: string
+}
 
-// 🐨 Create a Comment type by intersecting WithId, WithTimestamps, and WithAuthor,
-// and also include text and postId (string)
+// Create User type
+type User = WithId &
+  WithTimestamps & {
+    name: string
+    email: string
+  }
 
-// 🐨 Create sample `user`, `post`, and `comment` values that match your types.
-// 💰 Timestamps must be real Date instances at runtime.
-// 🐨 Export `user`, `post`, and `comment`. Tests import these by name and check
-// their shapes.
-// export { user, post, comment }
+// Create Post type
+type Post = WithId &
+  WithTimestamps &
+  WithAuthor & {
+    title: string
+    content: string
+  }
+
+// Create Comment type
+type Comment = WithId &
+  WithTimestamps &
+  WithAuthor & {
+    text: string
+    postId: string
+  }
+
+// Create sample User
+const user: User = {
+  id: 'user-1',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  name: 'Alice Johnson',
+  email: 'alice@example.com',
+}
+
+// Create sample Post
+const post: Post = {
+  id: 'post-1',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  authorId: user.id,
+  authorName: user.name,
+  title: 'Learning TypeScript',
+  content: 'Intersection types combine multiple types together.',
+}
+
+// Create sample Comment
+const comment: Comment = {
+  id: 'comment-1',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  authorId: user.id,
+  authorName: user.name,
+  text: 'Great explanation!',
+  postId: post.id,
+}
+
+// Export samples
+export { user, post, comment }
