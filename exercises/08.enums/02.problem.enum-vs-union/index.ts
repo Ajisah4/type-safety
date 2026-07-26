@@ -13,10 +13,13 @@ function logWithEnum(level: LogLevel, message: string): void {
 	console.log(`[${level.toUpperCase()}] ${message}`)
 }
 
-// 🐨 Add `logWithUnion(level, message): void` that uses a string literal union
-// instead of the LogLevel enum for the level parameter:
-// 'debug' | 'info' | 'warn' | 'error'
-// 💰 Log in the same style as logWithEnum: `[LEVEL] message`
+// Union type approach
+function logWithUnion(
+	level: 'debug' | 'info' | 'warn' | 'error',
+	message: string
+): void {
+	console.log(`[${level.toUpperCase()}] ${message}`)
+}
 
-// 🐨 Export `logWithUnion`. Tests import this by name.
-// export { logWithUnion }
+// Export function for tests
+export { logWithUnion }
