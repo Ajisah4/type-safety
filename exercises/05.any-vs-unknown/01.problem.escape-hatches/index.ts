@@ -9,11 +9,21 @@ function dangerousProcess(value: any): string {
 dangerousProcess('example')
 
 // 🐨 Implement `safeProcess` for unknown input
-// Required outputs:
-// - string → uppercased
-// - number → two decimal places
-// - boolean → true / false
-// - other values → string conversion without throwing
+function safeProcess(value: unknown): string {
+	if (typeof value === 'string') {
+		return value.toUpperCase()
+	}
+
+	if (typeof value === 'number') {
+		return value.toFixed(2)
+	}
+
+	if (typeof value === 'boolean') {
+		return value.toString()
+	}
+
+	return String(value)
+}
 
 // 🐨 Export `safeProcess`. Tests import it by name and check runtime behavior.
-// export { safeProcess }
+export { safeProcess }
