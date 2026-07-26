@@ -1,10 +1,14 @@
 // Generic Functions
 
-// 🐨 Create a generic `identity` function
-// It takes a value of type Value and returns it
+// Generic identity function
+function identity<Value>(value: Value): Value {
+  return value;
+}
 
-// 🐨 Create a generic `last` function
-// Takes an array of Item, returns Item | undefined
+// Generic last function
+function last<Item>(array: Item[]): Item | undefined {
+  return array[array.length - 1];
+}
 
 // Test your functions
 // console.log(identity('hello')) // 'hello'
@@ -13,6 +17,5 @@
 // console.log(last(['a', 'b'])) // 'b'
 // console.log(last<number>([])) // undefined
 
-// 🐨 Export `identity` and `last`. Tests import these by
-// name and check generic behavior.
-// export { identity, last }
+// Export functions
+export { identity, last };
