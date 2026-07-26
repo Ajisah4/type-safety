@@ -1,11 +1,10 @@
-// 🐨 Use declare global to augment the Config interface from index.ts
-// 💰 declare global { interface Config { ... } }
+// Complete declaration merging for the Config interface
+declare global {
+  interface Config {
+    theme: 'light' | 'dark'
+    maxConnections: number
+  }
+}
 
-// 🐨 Add a `theme` property to Config:
-// - theme: 'light' | 'dark'
-
-// 🐨 Add a `maxConnections` property to Config:
-// - maxConnections: number
-
-// 🐨 Make this file a module so `import './config-augment.ts'` is valid
-// 💰 A file is a module when it has at least one top-level import or export
+// Making the file a module by including an empty export statement
+export {}

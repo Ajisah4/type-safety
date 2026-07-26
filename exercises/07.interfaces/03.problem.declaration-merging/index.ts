@@ -1,16 +1,26 @@
 // Declaration Merging
 
-// 🐨 Declare Config in the global scope using: declare global { interface Config { ... } }
-// 💰 This allows the interface to be merged across multiple files
-// - appName: string
+// Import config augmentation to activate declaration merging
+import './config-augment.ts'
 
-// 🐨 Import the config-augment module to activate declaration merging
-// 💰 Side-effect import: import './config-augment.ts'
+// Declare Config in the global scope
+declare global {
+  interface Config {
+    appName: string
+  }
+}
 
-// 🐨 Create a `config` object that satisfies the merged Config interface
-// (it should have appName, theme, and maxConnections)
+// Create config object using the merged Config interface
+const config: Config = {
+  appName: 'Epic Shop',
+  theme: 'dark',
+  maxConnections: 100,
+}
 
-// 🐨 Create a `getTheme` function that takes a Config and returns its theme
+// Create getTheme function
+function getTheme(config: Config): string {
+  return config.theme
+}
 
-// 🐨 Export `config` and `getTheme`. Tests import these by name.
-// export { config, getTheme }
+// Export values and function
+export { config, getTheme }

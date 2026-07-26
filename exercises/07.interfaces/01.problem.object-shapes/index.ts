@@ -1,18 +1,37 @@
 // Defining Object Shapes with Interfaces
 
-// 🐨 Create a Product interface with:
-// - id: string
-// - name: string
-// - price: number
-// - status: 'active' | 'inactive' | 'discontinued'
-// - description?: string (optional)
+// Create Product interface
+interface Product {
+  id: string
+  name: string
+  price: number
+  status: 'active' | 'inactive' | 'discontinued'
+  description?: string
+}
 
-// 🐨 Create a function `getProductSummary` that takes a Product and returns a
-// string including name, price, and either the description or a no-description
-// fallback when description is missing.
+// Create getProductSummary function
+function getProductSummary(product: Product): string {
+  const description = product.description ?? 'No description available'
 
-// 🐨 Create sample `product` (no description) and `productWithDesc`
-// (`description: 'Has description'`) values that match your interface.
-// 🐨 Export `getProductSummary`, `product`, and `productWithDesc`.
-// Tests import these by name and check behavior and shapes.
-// export { getProductSummary, product, productWithDesc }
+  return `${product.name} - $${product.price} - ${description}`
+}
+
+// Create sample product without description
+const product: Product = {
+  id: 'p1',
+  name: 'Laptop',
+  price: 999.99,
+  status: 'active',
+}
+
+// Create sample product with description
+const productWithDesc: Product = {
+  id: 'p2',
+  name: 'Keyboard',
+  price: 49.99,
+  status: 'active',
+  description: 'Has description',
+}
+
+// Export functions and values
+export { getProductSummary, product, productWithDesc }
